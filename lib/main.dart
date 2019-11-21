@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(LogoApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -94,6 +94,25 @@ class MyApp extends StatelessWidget {
                   fontSize: 12, fontWeight: FontWeight.w400, color: color)),
         )
       ],
+    );
+  }
+}
+
+class LogoApp extends StatefulWidget {
+  @override
+  _LogoAppState createState() => _LogoAppState();
+}
+
+class _LogoAppState extends State<LogoApp> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        height: 300,
+        width: 300,
+        child: FlutterLogo(),
+      ),
     );
   }
 }
