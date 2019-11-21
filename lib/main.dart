@@ -125,7 +125,10 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) => AnimatedLogo(animation: animation);
+  Widget build(BuildContext context) => GrowTransition(
+        child: LogoWidget(),
+        animation: animation,
+      );
 
   @override
   void dispose() {
@@ -149,4 +152,33 @@ class AnimatedLogo extends AnimatedWidget {
       ),
     );
   }
+}
+
+class LogoWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: FlutterLogo(),
+    );
+  }
+}
+
+class GrowTransition extends StatelessWidget {
+  GrowTransition({this.child, this.animation});
+
+  final Widget child;
+  final Animation<double> animation;
+
+  @override
+  Widget build(BuildContext context) => Center(
+        child: AnimatedBuilder(
+            animation: animation,
+            builder: (context, child) => Container(
+                  height: animation.value,
+                  width: animation.value,
+                  child: child,
+                ),
+            child: child),
+      );
 }
